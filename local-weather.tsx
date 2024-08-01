@@ -25,15 +25,23 @@ export interface Props {
     longitude?: number
 }
 
-export const JapanWeatherAndTemperature: React.ComponentType<Props> =
-    function JapanWeatherAndTemperature(props) {
-        const { textColor, fontFamily, lineHeight, fontStyle, style, latitude, longitude } = props
+export const LocalWeatherAndTemperature: React.ComponentType<Props> =
+    function LocalWeatherAndTemperature(props) {
+        const {
+            textColor,
+            fontFamily,
+            lineHeight,
+            fontStyle,
+            style,
+            latitude,
+            longitude,
+        } = props
         const fontStyles = useFontControls(props)
         const [weatherInfo, setWeatherInfo] = useState<string | null>(null)
 
         useEffect(() => {
             fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=Asia/Tokyo`
+                `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=Asia/Jakarta`
             )
                 .then((response) => {
                     if (!response.ok) {
@@ -115,18 +123,18 @@ export const JapanWeatherAndTemperature: React.ComponentType<Props> =
         )
     }
 
-JapanWeatherAndTemperature.defaultProps = {
+LocalWeatherAndTemperature.defaultProps = {
     textColor: "#E8E8E8",
     fontFamily: "Inter",
     fontSize: 16,
     fontWeight: 600,
     lineHeight: 20,
     fontStyle: "normal",
-    latitude: 35.6762,  // Default to Tokyo, Japan
-    longitude: 139.6503,
+    latitude: -6.2088, // Default to Jakarta, Indonesia
+    longitude: 106.8456,
 }
 
-addPropertyControls(JapanWeatherAndTemperature, {
+addPropertyControls(LocalWeatherAndTemperature, {
     textColor: { type: ControlType.Color, title: "Color" },
     ...fontControls,
     fontSize: {
@@ -148,14 +156,14 @@ addPropertyControls(JapanWeatherAndTemperature, {
     latitude: {
         type: ControlType.Number,
         title: "Latitude",
-        defaultValue: 35.6762,
+        defaultValue: -6.2088,
         step: 0.0001,
         displayStepper: true,
     },
     longitude: {
         type: ControlType.Number,
         title: "Longitude",
-        defaultValue: 139.6503,
+        defaultValue: 106.8456,
         step: 0.0001,
         displayStepper: true,
     },
@@ -165,7 +173,8 @@ const baseInputStyles: React.CSSProperties = {
     fontFamily: fontStack,
 }
 
-JapanWeatherAndTemperature.displayName = "Japan Weather and Temperature"
+LocalWeatherAndTemperature.displayName = "Local Weather and Temperature"
+
 
 /**
  * [License](https://twitter.com/veeuix)
