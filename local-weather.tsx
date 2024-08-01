@@ -1,3 +1,9 @@
+/**
+ * Customizable Weather & Temperature created by @veeuix
+ * v1.0.0
+ * veeuix on 𝕏
+ */
+
 import * as React from "react"
 import { ControlType, addPropertyControls } from "framer"
 import { useState, useEffect } from "react"
@@ -160,3 +166,7 @@ const baseInputStyles: React.CSSProperties = {
 }
 
 JapanWeatherAndTemperature.displayName = "Japan Weather and Temperature"
+
+/**
+ * [License](https://twitter.com/veeuix)
+ */
